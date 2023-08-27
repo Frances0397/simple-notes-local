@@ -1,21 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+// import CardView from './components/CardView';
+// import ListView from './components/ListView';
+import MainPage from './screens/MainPage';
+import DetailPage from './screens/DetailPage';
+// import { TouchableOpacity } from 'react-native-gesture-handler';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ animation: "slide_from_right", headerShown: false }}>
+        <Stack.Screen
+          name="Home"
+          component={MainPage} />
+        <Stack.Screen
+          name="Detail"
+          component={DetailPage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
